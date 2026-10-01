@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>Little Corner Gallery - mockup</title>
+ <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ <header class="app-header">
+    <h1>Little Corner Gallery</h1>
+    <p>A place where you can save your most preciosa memories and artwork.</p>
+ </header>
+ <main class="container">
+    <section class="panel">
+        <h2>Add a photo</h2>
+        <form class="item-form">
+            <label>Title<input type="text" name="titlu" placeholder="Ex: ..." /></label>
+            <label>Show
+                <select name="eticheta">
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                    <option value="Shared">Shared</option>
+                </select>
+            </label>
+            <button type="submit">Post</button>
+        </form>
+    </section>
+    <section class="panel">
+        <h2>My Album</h2>
+        <!-- Când lista e goală: <p class="empty">Nu există niciun element.</p> -->
+        <ul class="item-list">
+            <li class="item-card">
+                <div>
+                    <h3>Flower_garden.png</h3>
+                    <span class="badge badge-v1">Public</span>
+                </div>
+                <span class="status">Activ</span>
+            </li>
+            <li class="item-card done"> 
+                <div>
+                    <h3>New_outfit.png</h3>
+                    <span class="badge badge-v1">Privare</span>
+                </div>    
+            </li>
+            <li class="item-card"> 
+                <div>
+                    <h3>Pretty_Sunset.png</h3>
+                    <span class="badge badge-v1">Shared</span>
+                </div>
+                <span class="status">Active</span>
+            </li>
+        </ul>
+    </section>
+ </main>
+ <footer class="app-footer">Proiect Tehnologii Web</footer>
+</body>
+</html
