@@ -1,14 +1,13 @@
 * { box-sizing: border-box; }
 :root {
- --bg: #d5e1f7; /* fundalul paginii */
- --card: #8a4d4d; /* fundalul panourilor */
+ --bg: #d5e1f7;
+ --card: #8a4d4d;
  --text: #1f2933;
  --muted: #6b7280;
- --accent: #5b3fd9; /* culoarea de accent a aplicației */
+ --accent: #5b3fd9;
  --accent-dark: #4338ca;
  --accent-soft: #c8c4db;
  --border: #1c2029;
- /* câte o culoare pentru fiecare valoare a etichetei */
 }
 
 body {
@@ -20,13 +19,13 @@ body {
 }
 
 .container {
- max-width: 1000px;
- margin: 24px auto;
- padding: 0 16px;
- display: grid;
- grid-template-columns: 1fr 2fr;
- gap: 24px;
- align-items: start;
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
 }
 
 .item-card {
