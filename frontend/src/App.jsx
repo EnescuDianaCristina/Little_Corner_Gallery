@@ -1,3 +1,4 @@
+import PhotoList from "./components/PhotoList.jsx";
 
 const poze = [
   { id: 1, titlu: "Sunset_Beach.jpg", favorit: false, vizibilitate: "Public" },
@@ -21,8 +22,8 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>My Gallery</h2>
-          {}
-          <pre>{JSON.stringify(poze, null, 2)}</pre>
+          {/* Afișarea listei dinamice de poze transmise ca props */}
+          <PhotoList poze={poze} />
         </section>
       </main>
     </>
