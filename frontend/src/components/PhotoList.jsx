@@ -1,6 +1,6 @@
 import PhotoCard from "./PhotoCard.jsx";
 
-export default function PhotoList({ poze }) {
+export default function PhotoList({ poze, onToggleFavorit, onDelete }) {
   // 1. Verificare pentru lista goala
   if (!poze || poze.length === 0) {
     return <p className="empty">Nu există nicio fotografie în galerie.</p>;
@@ -10,7 +10,12 @@ export default function PhotoList({ poze }) {
   return (
     <ul className="item-list">
       {poze.map((poza) => (
-        <PhotoCard key={poza.id} poza={poza} />
+        <PhotoCard
+          key={poza.id}
+          poza={poza}
+          onToggleFavorit={onToggleFavorit}
+          onDelete={onDelete}
+        />
       ))}
     </ul>
   );
