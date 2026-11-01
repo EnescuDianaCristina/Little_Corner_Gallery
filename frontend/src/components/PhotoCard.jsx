@@ -1,7 +1,7 @@
 const ETICHETE_VIZIBILITATE = {
   Public: "Public",
-  Private: "Privat",
-  Shared: "Partajat"
+  Private: "Private",
+  Shared: "Shared"
 };
 
 export default function PhotoCard({ poza, onToggleFavorit, onDelete }) {

@@ -16,27 +16,11 @@
   --header-gradient: linear-gradient(0deg, #e9bad7 20%, #ffffff 100%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #14121d;
-    --card: #1e1b2e;
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --accent-soft: #2a2342;
-    --shadow: none;
-
-    /* Gradient pentru Dark Mode */ 
-    --bg-gradient: linear-gradient(0deg, #0d0b14 0%, #1a162b 60%);
-    --header-gradient: linear-gradient(0deg, #1a162b 15%, #2a2342 75%);
-  }
-}
-
 :root[data-theme="dark"] {
   --bg: #14121d;
   --card: #1e1b2e;
   --text: #e5e7eb;
   --muted: #9ca3af;
-  --border: #352f4d;
   --accent-soft: #2a2342;
   --shadow: none;
 
@@ -119,15 +103,15 @@ body {
 .btn-danger {
   border: 1px solid var(--border);
   background: transparent;
-  color: #ef4444;
-  border-radius: 8px;
+  color: #a72424;
+  border-radius: 16px;
   padding: 6px 12px;
-  font: inherit;
+  font: 20px sans-serif;
   cursor: pointer;
 }
 
 .btn-danger:hover {
-  background: #ef4444;
+  background: #b62626;
   color: #fff;
 }
 

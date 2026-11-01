@@ -42,7 +42,7 @@ export default function App() {
           onClick={handleTema}
           aria-pressed={tema === "dark"}
         >
-          {tema === "dark" ? "Mod luminos" : "Mod întunecat"}
+          {tema === "dark" ? "Light Mode" : "Dark Mode"}
         </button>
 
         <h1>Photo Gallery</h1>
