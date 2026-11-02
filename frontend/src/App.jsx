@@ -1,19 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PhotoList from "./components/PhotoList.jsx";
-
-const POZE_INITIALE = [
-  { id: 1, titlu: "Sunset_Beach.jpg", favorit: false, vizibilitate: "Public" },
-  { id: 2, titlu: "Family_Portrait.png", favorit: true, vizibilitate: "Private" },
-  { id: 3, titlu: "Project_Design.png", favorit: false, vizibilitate: "Shared" }
-];
+import { fetchPoze } from "./api.js";
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export default function App() {
-  const [poze, setPoze] = useState(POZE_INITIALE);
+  const [poze, setPoze] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [tema, setTema] = useState(temaInitiala);
+
+  // Incarcarea datelor de la API prin useEffect
+  useEffect(() => {
+    let ignore = false;
+
+    async function load() {
+      try {
+        const data = await fetchPoze();
+        if (!ignore) setPoze(data);
+      } catch (err) {
+        if (!ignore) setError(err.message);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+
+    load();
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   function handleToggleFavorit(id) {
     setPoze((prev) =>
@@ -36,13 +55,12 @@ export default function App() {
   return (
     <>
       <header className="app-header">
-        {/* Butonul de comutare a temei din colț */}
         <button
           className="theme-toggle"
           onClick={handleTema}
           aria-pressed={tema === "dark"}
         >
-          {tema === "dark" ? "Light Mode" : "Dark Mode"}
+          {tema === "dark" ? "Mod luminos" : "Mod întunecat"}
         </button>
 
         <h1>Photo Gallery</h1>
@@ -55,12 +73,22 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>My Gallery</h2>
-          {/* Transmiterea datelor și a funcțiilor prin props către PhotoList */}
-          <PhotoList
-            poze={poze}
-            onToggleFavorit={handleToggleFavorit}
-            onDelete={handleDelete}
-          />
+
+          {loading && <p className="info">Se încarcă...</p>}
+
+          {error && (
+            <p className="error">
+              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+            </p>
+          )}
+
+          {!loading && !error && (
+            <PhotoList
+              poze={poze}
+              onToggleFavorit={handleToggleFavorit}
+              onDelete={handleDelete}
+            />
+          )}
         </section>
       </main>
     </>

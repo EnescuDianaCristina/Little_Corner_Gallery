@@ -14,6 +14,10 @@
   /* Gradient pentru Light Mode */
   --bg-gradient: linear-gradient(0deg, #b636c7 5%, #e9bad7 60%);
   --header-gradient: linear-gradient(0deg, #e9bad7 20%, #ffffff 100%);
+
+  --error-bg: #fdf2f8;
+  --error-border: #fbcfe8;
+  --mare: #ef4444;
 }
 
 :root[data-theme="dark"] {
@@ -27,6 +31,9 @@
   /* Gradient pentru Dark Mode */
   --bg-gradient: linear-gradient(0deg, #0d0b14 0%, #1a162b 60%);
   --header-gradient: linear-gradient(0deg, #1a162b 15%, #2a2342 75%);
+
+  --error-bg: #3b1d2e;
+  --error-border: #6b2a4a; 
 }
 
 body {
@@ -54,6 +61,14 @@ body {
   padding: 32px 24px;
   border-radius: 12px;
   border: 1px solid var(--border);
+  text-align: center;
+}
+
+.app-header h1 {
+  font-family: 'Cooper', system-ui, -apple-system, sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .theme-toggle {
@@ -124,4 +139,17 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* Stări de încărcare și de eroare */
+.info {
+  color: var(--muted);
+}
+
+.error {
+  color: var(--mare);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  padding: 10px 12px;
 }

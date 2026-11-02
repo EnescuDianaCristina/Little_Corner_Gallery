@@ -1,0 +1,9 @@
+{
+  "poze": [
+    { "id": 1, "titlu": "Sunset_Beach.jpg", "favorit": false, "vizibilitate": "Public" },
+    { "id": 2, "titlu": "Family_Portrait.png", "favorit": true, "vizibilitate": "Private" },
+    { "id": 3, "titlu": "Project_Design.png", "favorit": false, "vizibilitate": "Shared" },
+    { "id": 4, "titlu": "Mountain_Trip.jpg", "favorit": false, "vizibilitate": "Public" },
+    { "id": 5, "titlu": "City_Night.png", "favorit": true, "vizibilitate": "Private" }
+  ]
+}
