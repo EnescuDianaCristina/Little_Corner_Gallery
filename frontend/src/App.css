@@ -3,13 +3,13 @@
 }
 
 :root {
-  --bg: #d5e1f7;
+  --bg: #ffffff;
   --card: #ffffff4d;
-  --text: #1f2933;
-  --muted: #6b7280;
-  --accent: #5b3fd9;
-  --accent-dark: #4338ca;
-  --accent-soft: #c8c4db;
+  --text: #281f33;
+  --muted: #ccb6cb;
+  --accent: #910e6e;
+  --accent-dark: #ac1ba4;
+  --accent-soft: #dbc4d4;
   
   /* Gradient pentru Light Mode */
   --bg-gradient: linear-gradient(0deg, #b636c7 5%, #e9bad7 60%);
@@ -49,7 +49,7 @@ body {
   margin: 24px auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 24px;
   align-items: start;
 }
@@ -152,4 +152,85 @@ body {
   border: 1px solid var(--error-border);
   border-radius: 8px;
   padding: 10px 12px;
+}
+
+/* Checkbox în formă de inimă pentru favorite (formă identică goală/plină) */
+.fav-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  transition: transform 0.15s ease;
+}
+
+/* Inima goală (doar contur) */
+.fav-checkbox::before {
+  content: "❤︎";
+  font-size: 1.5rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.8px var(--text-muted, #4e3548);
+  transition: color 0.15s ease, -webkit-text-stroke 0.15s ease;
+}
+
+/* Inima plină (același simbol, umplut cu roșu) */
+.fav-checkbox:checked::before {
+  color: #e11d48;
+  -webkit-text-stroke: 1.8px #e11d48;
+}
+
+/* Mic efect la hover */
+.fav-checkbox:hover {
+  transform: scale(1.15);
+}
+
+/* formular si stari de validare */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.task-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.task-form input,
+.task-form select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.task-form input[aria-invalid="true"] {
+  border-color: var(--mare, #ef4444);
+}
+
+.task-form button {
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.task-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

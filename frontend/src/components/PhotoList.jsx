@@ -1,15 +1,25 @@
 import PhotoCard from "./PhotoCard.jsx";
 
+// Primește lista de poze și returnează o copie sortată, cu cele favorite primele
+function sorteazaPoze(listaPoze) {
+  return [...listaPoze].sort((a, b) => Number(b.favorit) - Number(a.favorit));
+}
+
+// Afișează lista sortată de fotografii sau un mesaj dacă galeria este goală
 export default function PhotoList({ poze, onToggleFavorit, onDelete }) {
-  // 1. Verificare pentru lista goala
   if (!poze || poze.length === 0) {
-    return <p className="empty">Nu există nicio fotografie în galerie.</p>;
+    return (
+      <p className="empty" data-testid="empty">
+        Nu există nicio fotografie.
+      </p>
+    );
   }
 
-  // 2. Randarea cardurilor din array folosind .map
+  const pozeSortate = sorteazaPoze(poze);
+
   return (
     <ul className="item-list">
-      {poze.map((poza) => (
+      {pozeSortate.map((poza) => (
         <PhotoCard
           key={poza.id}
           poza={poza}

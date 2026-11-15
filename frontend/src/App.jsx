@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PhotoList from "./components/PhotoList.jsx";
-import { fetchPoze } from "./api.js";
+import PhotoForm from "./components/PhotoForm.jsx";
+import { createPoza, deletePoza, fetchPoze, updatePoza } from "./api.js";
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -12,7 +13,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [tema, setTema] = useState(temaInitiala);
 
-  // Incarcarea datelor de la API prin useEffect
+  // Încărcarea datelor de la API prin useEffect
   useEffect(() => {
     let ignore = false;
 
@@ -34,14 +35,29 @@ export default function App() {
     };
   }, []);
 
-  function handleToggleFavorit(id) {
-    setPoze((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, favorit: !p.favorit } : p))
-    );
+  // Întâi serverul, apoi state-ul (fără try/catch aici, ca eroarea să ajungă în PhotoForm)
+  async function handleAdd(poza) {
+    const creata = await createPoza(poza);
+    setPoze((prev) => [...prev, creata]);
   }
 
-  function handleDelete(id) {
-    setPoze((prev) => prev.filter((p) => p.id !== id));
+  async function handleToggleFavorit(id) {
+    const poza = poze.find((p) => p.id === id);
+    try {
+      const actualizata = await updatePoza(id, { favorit: !poza.favorit });
+      setPoze((prev) => prev.map((p) => (p.id === id ? actualizata : p)));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function handleDelete(id) {
+    try {
+      await deletePoza(id);
+      setPoze((prev) => prev.filter((p) => p.id !== id));
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   function handleTema() {
@@ -72,17 +88,26 @@ export default function App() {
 
       <main className="container">
         <section className="panel">
+          <h2>Adaugă fotografie</h2>
+          <PhotoForm onAdd={handleAdd} />
+        </section>
+
+        <section className="panel">
           <h2>My Gallery</h2>
 
-          {loading && <p className="info">Se încarcă...</p>}
-
-          {error && (
-            <p className="error">
-              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+          {loading && (
+            <p className="info" data-testid="loading">
+              Se încarcă...
             </p>
           )}
 
-          {!loading && !error && (
+          {error && (
+            <p className="error" data-testid="error">
+              {error}
+            </p>
+          )}
+
+          {!loading && (
             <PhotoList
               poze={poze}
               onToggleFavorit={handleToggleFavorit}

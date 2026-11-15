@@ -8,12 +8,14 @@ export default function PhotoCard({ poza, onToggleFavorit, onDelete }) {
   const cardClassName = poza.favorit ? "item-card done" : "item-card";
 
   return (
-    <li className={cardClassName}>
+    <li className={cardClassName} data-testid="item" data-id={poza.id}>
       <label className="task-main">
         <input
           type="checkbox"
+          className="fav-checkbox"
           checked={poza.favorit}
           onChange={() => onToggleFavorit(poza.id)}
+          data-testid="item-toggle"
         />
         <div>
           <h3>{poza.titlu}</h3>
