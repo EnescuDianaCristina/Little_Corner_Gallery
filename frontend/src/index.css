@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #ffffff;
+  --card: #ffffff4d;
+  --text: #281f33;
+  --muted: #6b536a;
+  --accent: #910e6e;
+  --accent-dark: #ac1ba4;
+  --accent-soft: #dbc4d4;
+  --border: rgba(145, 14, 110, 0.25);
+  --radius: 12px;
+
+  /* Gradient pentru Light Mode */
+  --bg-gradient: linear-gradient(0deg, #b636c7 5%, #e9bad7 60%);
+  --header-gradient: linear-gradient(0deg, #e9bad7 20%, #ffffff 100%);
+
+  /* Culori pentru badge-uri și erori */
+  --public: #0d9488;
+  --private: #910e6e;
+  --shared: #d97706;
+  --error-bg: #fdf2f8;
+  --error-border: #fbcfe8;
+  --mare: #ef4444;
+}
+
+:root[data-theme="dark"] {
+  --bg: #14121d;
+  --card: #1e1b2e;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent-soft: #2a2342;
+  --border: #352f4d;
+  --shadow: none;
+
+  /* Gradient pentru Dark Mode */
+  --bg-gradient: linear-gradient(0deg, #0d0b14 0%, #1a162b 60%);
+  --header-gradient: linear-gradient(0deg, #1a162b 15%, #2a2342 75%);
+
+  --error-bg: #3b1d2e;
+  --error-border: #6b2a4a;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Panouri comune */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+/* Stări de încărcare, listă goală și eroare */
+.info {
+  color: var(--muted);
+}
+
+.empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.error {
+  color: var(--mare);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+/* Butoane globale */
+.btn {
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: #a72424;
+  border-radius: 16px;
+  padding: 6px 12px;
+  font: 16px sans-serif;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background: #b62626;
+  color: #fff;
+}
+
+/* Badge-uri vizibilitate */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #fff;
+}
+
+.badge-public { background: var(--public); }
+.badge-private { background: var(--private); }
+.badge-shared { background: var(--shared); }

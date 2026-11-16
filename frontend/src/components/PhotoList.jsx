@@ -1,13 +1,12 @@
 import PhotoCard from "./PhotoCard.jsx";
+import styles from "./PhotoList.module.css";
 
-// Primește lista de poze și returnează o copie sortată, cu cele favorite primele
-function sorteazaPoze(listaPoze) {
-  return [...listaPoze].sort((a, b) => Number(b.favorit) - Number(a.favorit));
+function PhotoSort(Photolist) {
+  return [...Photolist].sort((a, b) => Number(b.favorit) - Number(a.favorit));
 }
 
-// Afișează lista sortată de fotografii sau un mesaj dacă galeria este goală
-export default function PhotoList({ poze, onToggleFavorit, onDelete }) {
-  if (!poze || poze.length === 0) {
+export default function PhotoList({ photo, onToggleFavorit, onDelete }) {
+  if (!photo || photo.length === 0) {
     return (
       <p className="empty" data-testid="empty">
         Nu există nicio fotografie.
@@ -15,14 +14,14 @@ export default function PhotoList({ poze, onToggleFavorit, onDelete }) {
     );
   }
 
-  const pozeSortate = sorteazaPoze(poze);
+  const pozeSortate = PhotoSort(photo);
 
   return (
-    <ul className="item-list">
-      {pozeSortate.map((poza) => (
+    <ul className={styles.list}>
+      {pozeSortate.map((photo) => (
         <PhotoCard
-          key={poza.id}
-          poza={poza}
+          key={photo.id}
+          photo={photo}
           onToggleFavorit={onToggleFavorit}
           onDelete={onDelete}
         />

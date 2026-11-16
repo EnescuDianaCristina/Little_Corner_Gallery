@@ -9,7 +9,7 @@
     {
       "id": 2,
       "titlu": "Family_Portrait.png",
-      "favorit": false,
+      "favorit": true,
       "vizibilitate": "Private"
     },
     {
@@ -21,7 +21,7 @@
     {
       "id": 4,
       "titlu": "Mountain_Trip.jpg",
-      "favorit": true,
+      "favorit": false,
       "vizibilitate": "Public"
     },
     {

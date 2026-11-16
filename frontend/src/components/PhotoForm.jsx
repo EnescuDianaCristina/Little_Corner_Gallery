@@ -1,10 +1,6 @@
 import { useState } from "react";
-
-const OPTIUNI_VIZIBILITATE = [
-  { value: "Public", label: "Public" },
-  { value: "Private", label: "Privat" },
-  { value: "Shared", label: "Partajat" },
-];
+import { OPTIUNI_VIZIBILITATE } from "../constants.js";
+import styles from "./PhotoForm.module.css";
 
 const TITLU_MAX = 100;
 
@@ -44,7 +40,7 @@ export default function PhotoForm({ onAdd }) {
   }
 
   return (
-    <form className="task-form" onSubmit={handleSubmit} noValidate data-testid="form">
+    <form className={styles.form} onSubmit={handleSubmit} noValidate data-testid="form">
       <label>
         Titlu
         <input
@@ -79,7 +75,7 @@ export default function PhotoForm({ onAdd }) {
         </p>
       )}
 
-      <button type="submit" disabled={trimite} data-testid="form-submit">
+      <button type="submit" className="btn" disabled={trimite} data-testid="form-submit">
         {trimite ? "Se salvează..." : "Adaugă"}
       </button>
     </form>
